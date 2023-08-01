@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "transpile": "npx babel input.jsx --out-file output.cjs "
+    "transpile": "npx babel Pages/index.jsx --out-file dist/index.cjs",
+    "transpile:home": "npx babel Pages/home.jsx --out-file dist/home.cjs"
   }
 }

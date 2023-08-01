@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.renderJSXToHTML = renderJSXToHTML;
 exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _escapeHtml = _interopRequireDefault(require("escape-html"));
@@ -38,9 +39,6 @@ function renderJSXToHTML(jsx) {
         var Component = jsx.type;
         var props = jsx.props;
         var returnedJsx = Component(props);
-        console.log({
-          returnedJsx: returnedJsx
-        });
         return renderJSXToHTML(returnedJsx);
       }
     } else throw new Error("cannot render an object");

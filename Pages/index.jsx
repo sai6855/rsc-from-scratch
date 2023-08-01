@@ -1,9 +1,10 @@
 import React from "react";
 import escapeHtml from "escape-html";
+import escapeHTML from "escape-html";
 
-function renderJSXToHTML(jsx) {
+export function renderJSXToHTML(jsx) {
   if (typeof jsx === "string" || typeof jsx === "number") {
-    return escapeHtml(jsx);
+    return escapeHTML(jsx);
   } else if (typeof jsx === null || typeof jsx === "boolean") {
     return "";
   } else if (Array.isArray(jsx)) {
