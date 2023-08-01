@@ -1,6 +1,10 @@
 import { createServer } from "http";
 import { readFile } from "fs/promises";
 import escapeHtml from "escape-html";
+import { toJson } from "react-json-parser";
+
+console.log(toJson(<div />));
+
 createServer(async (req, res) => {
   const author = "Jae Doe";
 

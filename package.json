@@ -2,12 +2,16 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+    "@babel/plugin-transform-react-jsx": "^7.21.5",
+    "@babel/preset-react": "^7.22.5",
     "escape-html": "^1.0.3",
     "nodemon": "^2.0.22",
-    "@babel/core": "^7.21.8",
-    "@babel/plugin-transform-react-jsx": "^7.21.5"
+    "react-json-parser": "^0.2.1"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.jsx"
   }
 }
