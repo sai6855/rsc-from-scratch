@@ -12,6 +12,7 @@
     "react-json-parser": "^0.2.1"
   },
   "scripts": {
-    "start": "nodemon server.jsx"
+    "start": "nodemon server.js",
+    "transpile": "npx babel input.jsx --out-file output.cjs "
   }
 }
