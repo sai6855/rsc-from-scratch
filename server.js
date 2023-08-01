@@ -1,6 +1,5 @@
 import { createServer } from "http";
 import { readFile } from "fs/promises";
-import escapeHtml from "escape-html";
 
 import HTMLFile from "./output.cjs";
 
