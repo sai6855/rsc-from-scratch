@@ -10,7 +10,6 @@ createServer(async (req, res) => {
   const author = "Jae Doe";
   const url = new URL(req.url, `http://${req.headers.host}`);
   const postContent = await readFile("./posts/hello-world.txt", "utf8");
-  console.log(url.pathname);
 
   if (url.pathname === "/hello-world") {
     sendHTML(res, HTML({ postContent, author }));
