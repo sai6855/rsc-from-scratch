@@ -19,29 +19,45 @@ function renderJSXToHTML(jsx) {
     }).join("");
   } else if (_typeof(jsx) === "object") {
     if (jsx.$$typeof === Symbol["for"]("react.element")) {
-      var _jsx$props$children;
-      var html = "<" + jsx.type;
-      for (var propName in jsx.props) {
-        if (propName !== "children") {
-          html = html + " ";
-          html = html + propName;
-          html = html + "=";
-          html = html + (0, _escapeHtml["default"])(jsx.props[propName]);
+      if (typeof jsx.type === "string") {
+        var _jsx$props$children;
+        var html = "<" + jsx.type;
+        for (var propName in jsx.props) {
+          if (propName !== "children") {
+            html = html + " ";
+            html = html + propName;
+            html = html + "=";
+            html = html + (0, _escapeHtml["default"])(jsx.props[propName]);
+          }
         }
+        html = html + " >";
+        html = html + renderJSXToHTML((_jsx$props$children = jsx.props.children) !== null && _jsx$props$children !== void 0 ? _jsx$props$children : "");
+        html += "</" + jsx.type + ">";
+        return html;
+      } else if (typeof jsx.type === "function") {
+        var Component = jsx.type;
+        var props = jsx.props;
+        var returnedJsx = Component(props);
+        console.log({
+          returnedJsx: returnedJsx
+        });
+        return renderJSXToHTML(returnedJsx);
       }
-      html = html + " >";
-      html = html + renderJSXToHTML((_jsx$props$children = jsx.props.children) !== null && _jsx$props$children !== void 0 ? _jsx$props$children : "");
-      html += "</" + jsx.type + ">";
-      return html;
     } else throw new Error("cannot render an object");
   }
 }
-function JSX(_ref) {
-  var postContent = _ref.postContent,
-    author = _ref.author;
+var Author = function Author(_ref) {
+  var author = _ref.author;
+  return /*#__PURE__*/_react["default"].createElement("i", null, "(c) ", (0, _escapeHtml["default"])(author), ", ", new Date().getFullYear());
+};
+function JSX(_ref2) {
+  var postContent = _ref2.postContent,
+    author = _ref2.author;
   return /*#__PURE__*/_react["default"].createElement("html", null, /*#__PURE__*/_react["default"].createElement("head", null, /*#__PURE__*/_react["default"].createElement("title", null, "My blog")), /*#__PURE__*/_react["default"].createElement("body", null, /*#__PURE__*/_react["default"].createElement("nav", null, /*#__PURE__*/_react["default"].createElement("a", {
     href: "/"
-  }, "Home"), /*#__PURE__*/_react["default"].createElement("hr", null)), /*#__PURE__*/_react["default"].createElement("article", null, (0, _escapeHtml["default"])(postContent)), /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement("i", null, "(c) ", (0, _escapeHtml["default"])(author), ", ", new Date().getFullYear())))));
+  }, "Home"), /*#__PURE__*/_react["default"].createElement("hr", null)), /*#__PURE__*/_react["default"].createElement("article", null, (0, _escapeHtml["default"])(postContent)), /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement(Author, {
+    author: author
+  })))));
 }
 function HTML() {
   return renderJSXToHTML(JSX.apply(void 0, arguments));

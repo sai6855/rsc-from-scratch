@@ -10,23 +10,36 @@ function renderJSXToHTML(jsx) {
     return jsx.map((code) => renderJSXToHTML(code)).join("");
   } else if (typeof jsx === "object") {
     if (jsx.$$typeof === Symbol.for("react.element")) {
-      let html = "<" + jsx.type;
+      if (typeof jsx.type === "string") {
+        let html = "<" + jsx.type;
 
-      for (const propName in jsx.props) {
-        if (propName !== "children") {
-          html = html + " ";
-          html = html + propName;
-          html = html + "=";
-          html = html + escapeHtml(jsx.props[propName]);
+        for (const propName in jsx.props) {
+          if (propName !== "children") {
+            html = html + " ";
+            html = html + propName;
+            html = html + "=";
+            html = html + escapeHtml(jsx.props[propName]);
+          }
         }
+        html = html + " >";
+        html = html + renderJSXToHTML(jsx.props.children ?? "");
+        html += "</" + jsx.type + ">";
+        return html;
+      } else if (typeof jsx.type === "function") {
+        const Component = jsx.type;
+        const props = jsx.props;
+        const returnedJsx = Component(props);
+        return renderJSXToHTML(returnedJsx);
       }
-      html = html + " >";
-      html = html + renderJSXToHTML(jsx.props.children ?? "");
-      html += "</" + jsx.type + ">";
-      return html;
     } else throw new Error("cannot render an object");
   }
 }
+
+const Author = ({ author }) => (
+  <i>
+    (c) {escapeHtml(author)}, {new Date().getFullYear()}
+  </i>
+);
 
 function JSX({ postContent, author }) {
   return (
@@ -43,9 +56,7 @@ function JSX({ postContent, author }) {
         <footer>
           <hr />
           <p>
-            <i>
-              (c) {escapeHtml(author)}, {new Date().getFullYear()}
-            </i>
+            <Author author={author} />
           </p>
         </footer>
       </body>
