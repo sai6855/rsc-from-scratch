@@ -10,9 +10,13 @@ const HTML = HTMLFile.default;
 createServer(async (req, res) => {
   const author = "Jae Doe";
   const url = new URL(req.url, `http://${req.headers.host}`);
+  const postContent = await readFile("./posts/hello-world.txt", "utf8");
 
   if (url.pathname === "/hello-world") {
-    sendHTML(res, await HTML({ author, filePath: "../posts/hello-world.txt" }));
+    sendHTML(
+      res,
+      await HTML({ postContent, author, filePath: "posts/hello-world.txt" })
+    );
   } else {
     sendHTML(res, HomeHTMLFile.default());
   }
