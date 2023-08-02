@@ -4,7 +4,6 @@ import escapeHTML from "escape-html";
 import { readFile } from "fs/promises";
 
 export async function renderJSXToHTML(jsx) {
-
   if (typeof jsx === "string" || typeof jsx === "number") {
     return escapeHTML(jsx);
   } else if (typeof jsx === null || typeof jsx === "boolean") {
@@ -50,7 +49,7 @@ const Author = ({ author }) => (
   </i>
 );
 
-async function JSX({ author, filePath, postContent }) {
+async function JSX({ author, filePath }) {
   const content = await readFile(filePath, "utf8");
   return (
     <html>
