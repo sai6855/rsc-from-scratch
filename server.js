@@ -23,6 +23,10 @@ createServer(async (req, res) => {
 }).listen(8080);
 
 function sendHTML(res, html) {
-  res.setHeader("Content-Type", "text/html");
-  res.end(html);
+  if (typeof html === "object") {
+    Promise.resolve(html).then((res) => res);
+  } else {
+    res.setHeader("Content-Type", "text/html");
+    res.end(html);
+  }
 }

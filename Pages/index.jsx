@@ -2,8 +2,9 @@ import React from "react";
 import escapeHtml from "escape-html";
 import escapeHTML from "escape-html";
 import { readFile } from "fs/promises";
-
+let output;
 export async function renderJSXToHTML(jsx) {
+  console.log(jsx);
   if (typeof jsx === "string" || typeof jsx === "number") {
     return escapeHTML(jsx);
   } else if (typeof jsx === null || typeof jsx === "boolean") {
@@ -51,18 +52,17 @@ const Author = ({ author }) => (
 
 async function JSX({ author, filePath, postContent }) {
   const content = await readFile(filePath, "utf8");
-
   return (
     <html>
       <head>
-        <title>{content}</title>
+        <title>Blog post</title>
       </head>
       <body>
         <nav>
           <a href="/">Home</a>
           <hr />
         </nav>
-        <article>{escapeHtml(postContent)}</article>
+        <article>{escapeHtml(content)}</article>
         <footer>
           <hr />
           <p>

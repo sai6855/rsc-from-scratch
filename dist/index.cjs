@@ -12,6 +12,7 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 var _react = _interopRequireDefault(require("react"));
 var _escapeHtml = _interopRequireDefault(require("escape-html"));
 var _promises = require("fs/promises");
+var output;
 function renderJSXToHTML(_x) {
   return _renderJSXToHTML.apply(this, arguments);
 }
@@ -22,39 +23,40 @@ function _renderJSXToHTML() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            console.log(jsx);
             if (!(typeof jsx === "string" || typeof jsx === "number")) {
-              _context.next = 4;
+              _context.next = 5;
               break;
             }
             return _context.abrupt("return", (0, _escapeHtml["default"])(jsx));
-          case 4:
+          case 5:
             if (!(typeof jsx === null || typeof jsx === "boolean")) {
-              _context.next = 8;
+              _context.next = 9;
               break;
             }
             return _context.abrupt("return", "");
-          case 8:
+          case 9:
             if (!Array.isArray(jsx)) {
-              _context.next = 14;
+              _context.next = 15;
               break;
             }
-            _context.next = 11;
+            _context.next = 12;
             return Promise.all(jsx.map(function (code) {
               return renderJSXToHTML(code);
             }));
-          case 11:
+          case 12:
             return _context.abrupt("return", _context.sent.join(""));
-          case 14:
+          case 15:
             if (!((0, _typeof2["default"])(jsx) === "object")) {
-              _context.next = 44;
+              _context.next = 45;
               break;
             }
             if (!(jsx.$$typeof === Symbol["for"]("react.element"))) {
-              _context.next = 38;
+              _context.next = 39;
               break;
             }
             if (!(typeof jsx.type === "string")) {
-              _context.next = 29;
+              _context.next = 30;
               break;
             }
             html = "<" + jsx.type;
@@ -68,38 +70,38 @@ function _renderJSXToHTML() {
             }
             html = html + " >";
             _context.t0 = html;
-            _context.next = 23;
+            _context.next = 24;
             return renderJSXToHTML((_jsx$props$children = jsx.props.children) !== null && _jsx$props$children !== void 0 ? _jsx$props$children : "");
-          case 23:
+          case 24:
             _context.t1 = _context.sent;
             html = _context.t0 + _context.t1;
             html += "</" + jsx.type + ">";
             return _context.abrupt("return", html);
-          case 29:
+          case 30:
             if (!(typeof jsx.type === "function")) {
-              _context.next = 36;
+              _context.next = 37;
               break;
             }
             Component = jsx.type;
             props = jsx.props;
             returnedJsx = Component(props);
-            _context.next = 35;
+            _context.next = 36;
             return renderJSXToHTML(returnedJsx);
-          case 35:
-            return _context.abrupt("return", _context.sent);
           case 36:
-            _context.next = 44;
-            break;
-          case 38:
-            _context.next = 40;
-            return Promise.resolve(jsx);
-          case 40:
-            resolvedPromiseJSX = _context.sent;
-            _context.next = 43;
-            return renderJSXToHTML(resolvedPromiseJSX);
-          case 43:
             return _context.abrupt("return", _context.sent);
+          case 37:
+            _context.next = 45;
+            break;
+          case 39:
+            _context.next = 41;
+            return Promise.resolve(jsx);
+          case 41:
+            resolvedPromiseJSX = _context.sent;
+            _context.next = 44;
+            return renderJSXToHTML(resolvedPromiseJSX);
           case 44:
+            return _context.abrupt("return", _context.sent);
+          case 45:
           case "end":
             return _context.stop();
         }
@@ -127,13 +129,12 @@ function _JSX() {
             return (0, _promises.readFile)(filePath, "utf8");
           case 3:
             content = _context2.sent;
-            console.log(content);
-            return _context2.abrupt("return", /*#__PURE__*/_react["default"].createElement("html", null, /*#__PURE__*/_react["default"].createElement("head", null, /*#__PURE__*/_react["default"].createElement("title", null, content)), /*#__PURE__*/_react["default"].createElement("body", null, /*#__PURE__*/_react["default"].createElement("nav", null, /*#__PURE__*/_react["default"].createElement("a", {
+            return _context2.abrupt("return", /*#__PURE__*/_react["default"].createElement("html", null, /*#__PURE__*/_react["default"].createElement("head", null, /*#__PURE__*/_react["default"].createElement("title", null, "Blog post")), /*#__PURE__*/_react["default"].createElement("body", null, /*#__PURE__*/_react["default"].createElement("nav", null, /*#__PURE__*/_react["default"].createElement("a", {
               href: "/"
-            }, "Home"), /*#__PURE__*/_react["default"].createElement("hr", null)), /*#__PURE__*/_react["default"].createElement("article", null, (0, _escapeHtml["default"])(postContent)), /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement(Author, {
+            }, "Home"), /*#__PURE__*/_react["default"].createElement("hr", null)), /*#__PURE__*/_react["default"].createElement("article", null, (0, _escapeHtml["default"])(content)), /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement(Author, {
               author: author
             }))))));
-          case 6:
+          case 5:
           case "end":
             return _context2.stop();
         }
