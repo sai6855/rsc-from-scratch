@@ -18,7 +18,7 @@ createServer(async (req, res) => {
       await HTML({ postContent, author, filePath: "posts/hello-world.txt" })
     );
   } else {
-    sendHTML(res, HomeHTMLFile.default());
+    sendHTML(res, await HomeHTMLFile.default());
   }
 }).listen(8080);
 
@@ -26,7 +26,7 @@ function sendHTML(res, html) {
   if (typeof html === "object") {
     Promise.resolve(html).then((res) => res);
   } else {
-    res.setHeader("Content-Type", "text/html");
-    res.end(html);
   }
+  res.setHeader("Content-Type", "text/html");
+  res.end(html);
 }

@@ -12,7 +12,6 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 var _react = _interopRequireDefault(require("react"));
 var _escapeHtml = _interopRequireDefault(require("escape-html"));
 var _promises = require("fs/promises");
-var output;
 function renderJSXToHTML(_x) {
   return _renderJSXToHTML.apply(this, arguments);
 }
@@ -23,40 +22,39 @@ function _renderJSXToHTML() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(jsx);
             if (!(typeof jsx === "string" || typeof jsx === "number")) {
-              _context.next = 5;
+              _context.next = 4;
               break;
             }
             return _context.abrupt("return", (0, _escapeHtml["default"])(jsx));
-          case 5:
+          case 4:
             if (!(typeof jsx === null || typeof jsx === "boolean")) {
-              _context.next = 9;
+              _context.next = 8;
               break;
             }
             return _context.abrupt("return", "");
-          case 9:
+          case 8:
             if (!Array.isArray(jsx)) {
-              _context.next = 15;
+              _context.next = 14;
               break;
             }
-            _context.next = 12;
+            _context.next = 11;
             return Promise.all(jsx.map(function (code) {
               return renderJSXToHTML(code);
             }));
-          case 12:
+          case 11:
             return _context.abrupt("return", _context.sent.join(""));
-          case 15:
+          case 14:
             if (!((0, _typeof2["default"])(jsx) === "object")) {
-              _context.next = 45;
+              _context.next = 44;
               break;
             }
             if (!(jsx.$$typeof === Symbol["for"]("react.element"))) {
-              _context.next = 39;
+              _context.next = 38;
               break;
             }
             if (!(typeof jsx.type === "string")) {
-              _context.next = 30;
+              _context.next = 29;
               break;
             }
             html = "<" + jsx.type;
@@ -70,38 +68,38 @@ function _renderJSXToHTML() {
             }
             html = html + " >";
             _context.t0 = html;
-            _context.next = 24;
+            _context.next = 23;
             return renderJSXToHTML((_jsx$props$children = jsx.props.children) !== null && _jsx$props$children !== void 0 ? _jsx$props$children : "");
-          case 24:
+          case 23:
             _context.t1 = _context.sent;
             html = _context.t0 + _context.t1;
             html += "</" + jsx.type + ">";
             return _context.abrupt("return", html);
-          case 30:
+          case 29:
             if (!(typeof jsx.type === "function")) {
-              _context.next = 37;
+              _context.next = 36;
               break;
             }
             Component = jsx.type;
             props = jsx.props;
             returnedJsx = Component(props);
-            _context.next = 36;
+            _context.next = 35;
             return renderJSXToHTML(returnedJsx);
+          case 35:
+            return _context.abrupt("return", _context.sent);
           case 36:
-            return _context.abrupt("return", _context.sent);
-          case 37:
-            _context.next = 45;
-            break;
-          case 39:
-            _context.next = 41;
-            return Promise.resolve(jsx);
-          case 41:
-            resolvedPromiseJSX = _context.sent;
             _context.next = 44;
+            break;
+          case 38:
+            _context.next = 40;
+            return Promise.resolve(jsx);
+          case 40:
+            resolvedPromiseJSX = _context.sent;
+            _context.next = 43;
             return renderJSXToHTML(resolvedPromiseJSX);
-          case 44:
+          case 43:
             return _context.abrupt("return", _context.sent);
-          case 45:
+          case 44:
           case "end":
             return _context.stop();
         }

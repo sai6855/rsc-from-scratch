@@ -2,9 +2,9 @@ import React from "react";
 import escapeHtml from "escape-html";
 import escapeHTML from "escape-html";
 import { readFile } from "fs/promises";
-let output;
+
 export async function renderJSXToHTML(jsx) {
-  console.log(jsx);
+
   if (typeof jsx === "string" || typeof jsx === "number") {
     return escapeHTML(jsx);
   } else if (typeof jsx === null || typeof jsx === "boolean") {
