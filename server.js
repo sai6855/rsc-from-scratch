@@ -12,7 +12,10 @@ createServer(async (req, res) => {
   const postContent = await readFile("./posts/hello-world.txt", "utf8");
 
   if (url.pathname === "/hello-world") {
-    sendHTML(res, HTML({ postContent, author }));
+    sendHTML(
+      res,
+      HTML({ postContent, author, filePath: "../posts/hello-world.txt" })
+    );
   } else {
     sendHTML(res, HomeHTMLFile.default());
   }
